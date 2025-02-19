@@ -1,0 +1,362 @@
+/* RESET DASAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  /* HEADER */
+  .header {
+    position: sticky; /* atau fixed jika ingin selalu menempel di atas */
+    top: 0;
+    background-color: #fff;
+    /* Ganti border-bottom menjadi box-shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+  }
+  
+  /* Bagian kiri header (ikon hamburger + logo) */
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .logo {
+    color: #e53935; /* Warna merah ala YouTube */
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  /* Bagian tengah header (search) */
+  .header-search {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    max-width: 600px;
+  }
+  
+  .header-search input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    font-size: 0.9rem;
+  }
+  
+  .search-btn {
+    padding: 0 16px;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 20px 20px 0;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .search-btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Bagian kanan header (ikon) */
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+ /* NOTIFICATION WRAPPER */
+.notification-wrapper {
+  position: relative; /* Agar dropdown absolute menempel di wrapper */
+  display: inline-block;
+}
+
+/* Tombol Ikon */
+.icon-btn {
+  position: relative; /* Agar badge posisinya absolute di dalam btn */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 1.2rem; /* Ukuran ikon lonceng */
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.icon-btn:hover {
+  background-color: #eee;
+}
+
+/* Badge Notifikasi */
+.notif-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%); /* Geser badge sedikit ke luar pojok */
+  background-color: #e53935; /* Merah ala YouTube */
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  min-width: 18px;     /* Supaya lingkaran minimal 18px */
+  height: 18px;        /* Supaya benar-benar bulat jika 1 digit */
+  text-align: center;
+  border-radius: 9px;  /* Bulat (setengah dari height) */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  pointer-events: none; /* Badge tidak bisa diklik, opsional */
+}
+
+/* Dropdown Notifikasi (opsional) */
+.notif-dropdown {
+  position: absolute;
+  top: 120%;  /* Turun di bawah tombol lonceng, atur sesuai kebutuhan */
+  right: 0;
+  width: 280px;               /* Lebar dropdown */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  z-index: 9999;              /* Pastikan di atas elemen lain */
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Header dropdown */
+.notif-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.notif-header h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.clear-btn {
+  background: none;
+  border: none;
+  color: #e53935;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.clear-btn:hover {
+  background-color: #fceaea; /* Warna merah sangat muda */
+}
+
+/* Body dropdown */
+.notif-body {
+  max-height: 200px; /* Batas tinggi, bisa scroll jika item banyak */
+  overflow-y: auto;
+}
+
+.notif-item {
+  padding: 8px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.notif-item:last-child {
+  border-bottom: none;
+}
+
+.notif-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.notif-item small {
+  color: #999;
+  font-size: 0.75rem;
+}
+
+/* Footer dropdown */
+.notif-footer {
+  padding: 8px 16px;
+  text-align: center;
+  background-color: #fafafa;
+}
+
+.notif-footer a {
+  text-decoration: none;
+  color: #e53935;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.notif-footer a:hover {
+  color: #b71c1c;
+}
+
+  
+  /* CONTAINER UTAMA (SIDEBAR + KONTEN) */
+  .container {
+    display: flex;
+    margin-top: 60px; /* sesuaikan dengan tinggi header */
+  }
+  
+  /* SIDEBAR */
+  .sidebar {
+    position: fixed;
+    top: 60px; /* di bawah header */
+    left: 0;
+    width: 220px;
+    height: calc(100% - 60px);
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+  
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+
+    z-index: 9999;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+  }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+  }
+  
+  .nav-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .nav-icon {
+    font-size: 1.2rem;
+  }
+  
+  /* KONTEN UTAMA */
+  .main-content {
+    flex: 1;
+    padding: 16px;
+  }
+  
+  /* GRID VIDEO */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  /* Responsif: 4 kolom di >=600px, 6 kolom di >=900px */
+  @media (min-width: 600px) {
+    .video-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media (min-width: 900px) {
+    .video-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  
+  /* KARTU VIDEO */
+  .video-card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .video-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* Thumbnail */
+  .video-thumb {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  
+  /* INFO VIDEO DI DALAM KARTU */
+  .video-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px;
+  }
+  
+  .channel-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .video-meta {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .video-title {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+    
+  }
+  
+  .video-channel {
+    font-size: 0.85rem;
+    color: #666;
+  }
+  
+  .thumb-container {
+    position: relative;
+    display: inline-block; 
+  }
+  
+  .episode-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    background-color: #e53935;
+    color: #fff;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StreamFlix - Frontend</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <button id="menu-icon" class="icon-btn">
+        <!-- Hamburger Icon (bisa pakai emoji ☰, atau SVG lain) -->
+        ☰
+      </button>
+      <h1 class="logo">StreamFlix</h1>
+    </div>
+
+    <div class="header-search">
+      <input type="text" placeholder="Search" />
+      <button class="search-btn">🔍</button>
+    </div>
+
+    <div class="notification-wrapper">
+      <!-- Tombol Lonceng -->
+      <button class="icon-btn" id="notif-btn">
+        <!-- Ikon lonceng (bisa pakai emoji atau SVG/ikon library) -->
+        <span class="bell-icon">🔔</span>
+        <!-- Badge notifikasi, misal menampilkan '3' -->
+        <span class="notif-badge" id="notif-badge">3</span>
+      </button>
+    
+      <!-- (Opsional) Dropdown Notifikasi -->
+      <div class="notif-dropdown hidden" id="notif-dropdown">
+        <div class="notif-header">
+          <h4>Notifikasi</h4>
+          <button class="clear-btn" id="clear-notif">Clear</button>
+        </div>
+        <div class="notif-body">
+          <!-- Contoh item notifikasi -->
+          <div class="notif-item">
+            <p><strong>Video Baru:</strong> Anime A Episode 12</p>
+            <small>1 jam yang lalu</small>
+          </div>
+          <div class="notif-item">
+            <p><strong>Video Baru:</strong> Anime B Episode 5</p>
+            <small>2 jam yang lalu</small>
+          </div>
+        </div>
+        <div class="notif-footer">
+          <a href="#">Lihat semua</a>
+        </div>
+      </div>
+    <script>
+      const notifBtn = document.getElementById('notif-btn');
+      const notifDropdown = document.getElementById('notif-dropdown');
+      const notifBadge = document.getElementById('notif-badge');
+      const clearNotifBtn = document.getElementById('clear-notif');
+    
+      // Toggle dropdown saat tombol lonceng diklik
+      notifBtn.addEventListener('click', () => {
+        notifDropdown.classList.toggle('hidden');
+      });
+    
+      // Clear notifikasi (contoh) saat tombol 'Clear' diklik
+      clearNotifBtn.addEventListener('click', () => {
+        // misal set badge ke 0 dan hapus item
+        notifBadge.textContent = '';
+        const notifBody = document.querySelector('.notif-body');
+        notifBody.innerHTML = '<p style="padding: 8px 16px;">Tidak ada notifikasi</p>';
+      });
+    
+      // (Opsional) Tutup dropdown saat klik di luar area dropdown
+      document.addEventListener('click', (e) => {
+        if (!notifBtn.contains(e.target) && !notifDropdown.contains(e.target)) {
+          notifDropdown.classList.add('hidden');
+        }
+      });
+    </script>
+    
+    
+  
+      <!-- Ikon user/profile -->
+      <button class="icon-btn">👤</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-item">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-label">Home</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">🔥</span>
+          <span class="nav-label">Trending</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">📺</span>
+          <span class="nav-label">Subscriptions</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">📚</span>
+          <span class="nav-label">Library</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">⏱️</span>
+          <span class="nav-label">History</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">⏰</span>
+          <span class="nav-label">Watch Later</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">👍</span>
+          <span class="nav-label">Liked Videos</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="video-grid">
+
+
+          <!-- Dandadan Episode 12 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/dan dan.jpg" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 12</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/dandadan.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                  Dandadan Episode 12 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Dandadan Episode 11 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/dan dan.jpg" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 11</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/dandadan.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                  Dandadan Episode 11 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Dandadan Episode 10 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/dan dan.jpg" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 10</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/dandadan.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                  Dandadan Episode 10 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Dandadan Episode 9 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/dan dan.jpg" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 9</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/dandadan.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                  Dandadan Episode 9 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Dandadan Episode 8 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/dan dan.jpg" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 8</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/dandadan.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                  Dandadan Episode 8 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Dandadan Episode 7 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/dan dan.jpg" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 7</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/dandadan.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                  Dandadan Episode 7 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Dandadan Episode 6 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/dan dan.jpg" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 6</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/dandadan.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                  Dandadan Episode 6 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Dandadan Episode 5 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/dan dan.jpg" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 5</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/dandadan.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                  Dandadan Episode 5 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Dandadan Episode 4 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/dan dan.jpg" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 4</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/dandadan.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                  Dandadan Episode 4 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Dandadan Episode 3 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/dan dan.jpg" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 3</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/dandadan.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                  Dandadan Episode 3 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Dandadan Episode 2 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/dan dan.jpg" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 2</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/dandadan.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                  Dandadan Episode 2 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dandadan Episode 1 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/dan dan.jpg" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 1</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/dandadan.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                  Dandadan Episode 1 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 12 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/100 pacar.png" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 12</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/The_100_Girlfriends.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                    Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 12 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 11 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/100 pacar.png" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 11</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/The_100_Girlfriends.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                    Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 11 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 10 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/100 pacar.png" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 10</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/The_100_Girlfriends.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                    Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 10 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 9 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/100 pacar.png" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 9</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/The_100_Girlfriends.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                    Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 9 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 8 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/100 pacar.png" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 8</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/The_100_Girlfriends.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                    Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 8 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 7 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/100 pacar.png" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 7</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/The_100_Girlfriends.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                    Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 7 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 6 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/100 pacar.png" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 6</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/The_100_Girlfriends.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                    Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 6 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 5 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/100 pacar.png" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 5</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/The_100_Girlfriends.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                    Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 5 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 4 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/100 pacar.png" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 4</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/The_100_Girlfriends.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                    Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 4 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 3 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/100 pacar.png" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 3</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/The_100_Girlfriends.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                    Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 3 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 2 -->
+          <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/100 pacar.png" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 2</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/The_100_Girlfriends.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                    Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 2 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 1 -->
+         <div class="video-card">
+            <div class="thumb-container">
+            <img 
+              src="gambar/100 pacar.png" 
+              alt="Video Thumbnail"
+              class="video-thumb"
+            />
+            <span class="episode-badge">EP 1</span>
+            </div>
+
+            <div class="video-info">
+              <img 
+                src="gambar/The_100_Girlfriends.png" 
+                alt="Channel Avatar"
+                class="channel-avatar"
+              />
+              <div class="video-meta">
+                <h3 class="video-title">
+                    Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo Episode 1 Subtitle Indonesia
+                </h3>
+              </div>
+            </div>
+          </div>
+    
+        </div>
+      </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
